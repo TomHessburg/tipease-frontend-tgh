@@ -66,7 +66,18 @@ const Login = props => {
                                     type: type
                                 }
                                 axios.post(`https://buildtipease.herokuapp.com/auth/users/login`,credentials)
-                                    .then(res => console.log(res))
+                                    .then(res => {
+                                        if(res.status === 200){
+                                            localStorage.setItem("token", res.data.token);
+                                            console.log(localStorage.getItem('token'));
+                                            if(type === 'users'){
+                                                props.history.push('/users/dashboard');
+                                            }
+                                            if(type === 'serviceWorkers'){
+                                                props.history.push('/serviceWorkers/dashboard');
+                                            }
+                                        }
+                                    })
                                     .catch(err => console.log(err));
                             }}
                         />
