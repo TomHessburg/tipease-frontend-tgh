@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './landingPage.module.scss';
 import { Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
@@ -15,12 +15,20 @@ const LandingPage = props => {
                         <a href="#">FAQ</a>
                     </ul>
                 </div>
-                <Button.Group size='small'>
-                    <Button><Link to="/login">Login</Link></Button>
-                    <Button.Or />
-                    <Button><Link to="/login">Sign up</Link></Button>
-                </Button.Group>
             </header>
+            <div className={styles.centerPage}>
+                <div className={styles.logSignMedia}>
+                    <h2>Try it for Free</h2>
+                    <Button.Group className={styles.logsign} size='small'>
+                        <Button><Link to="/home/login">Login</Link></Button>
+                        <Button.Or />
+                        <Button><Link className={styles.farRight} to="/home/login">Sign up</Link></Button>
+                    </Button.Group>
+                </div>
+            </div>
+            <div className={styles.bottomLeft}>
+                <h2>A Better Way to Tip</h2>
+            </div>
         </div>
     )
 }

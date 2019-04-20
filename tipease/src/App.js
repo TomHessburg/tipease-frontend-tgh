@@ -11,8 +11,7 @@ class App extends Component {
     return (
       <div className="App">
         <Route path="/home" component={LandingPage} />
-        <Route path="/login" component={Login} />
-        
+        <Route path="/home/login" component={Login} />
       </div>
     );
   }

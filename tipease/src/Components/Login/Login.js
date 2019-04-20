@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import styles from './Login.module.scss';
-import { Button, Divider, Form, Grid, Segment, Radio } from 'semantic-ui-react';
+import { Button, Divider, Form, Grid, Segment, Icon, Radio } from 'semantic-ui-react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 const Login = props => {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const [type, setType] = useState("");
+    const [type, setType] = useState("users");
 
     return (
-        <div>
-            <Segment placeholder>
+        <div 
+        className={styles.login}
+        >
+            <Segment placeholder className={styles.loginForm}>
                 <Grid columns={2} relaxed='very' stackable>
                 <Grid.Column>
                     <Form>
@@ -31,34 +34,38 @@ const Login = props => {
                             value={password}
                             onChange={e => setPassword(e.target.value)}
                         />
+                        <div className={styles.radioBtns}>
+                            <Form.Field>
+                                <Radio
+                                    
+                                    label='Service Worker'
+                                    name='radioGroup'
+                                    value='serviceWorkers'
+                                    checked={type === "serviceWorkers"}
+                                    onChange={e => setType("serviceWorkers")}
+                                />
+                            </Form.Field>
+                            <Form.Field>
+                                <Radio
+                                    label='User'
+                                    name='radioGroup'
+                                    value='users'
+                                    checked={type === "users"}
+                                    onChange={e => setType("users")}
+                                />
+                            </Form.Field>
+                        </div>
                         <Button 
-                            style={{margin:"10px auto"}} 
-                            content='User Login' 
+                            content='Login' 
                             primary
                             onClick={e => {
                                 e.preventDefault();
                                 const credentials = {
                                     username: userName,
                                     password: password,
-                                    type: "users"
+                                    type: type
                                 }
-                                axios.post('https://buildtipease.herokuapp.com/auth/users/login',credentials)
-                                    .then(res => console.log(res))
-                                    .catch(err => console.log(err));
-                            }}
-                        />
-                        <Button 
-                            content='Service Worker Login' 
-                            primary 
-                            onClick={e => {
-                                e.preventDefault();
-                                const credentials = {
-                                    username: userName,
-                                    password: password,
-                                    type: "serviceWorkers"
-                                }
-                                console.log(credentials);
-                                axios.post('https://buildtipease.herokuapp.com/auth/users/login',credentials)
+                                axios.post(`https://buildtipease.herokuapp.com/auth/users/login`,credentials)
                                     .then(res => console.log(res))
                                     .catch(err => console.log(err));
                             }}
@@ -74,6 +81,7 @@ const Login = props => {
                 <Divider 
                 className={styles.divider}
                 vertical>Or</Divider>
+                <Link to="/home"><Icon className={styles.close} name="window close" size="big" /></Link>
             </Segment>
         </div>
     )
