@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import './App.css';
 import LandingPage from './Components/LandingPage';
 import Login from './Components/Login';
@@ -14,6 +15,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <CssBaseline />
         <Route path="/home" component={LandingPage} />
         <Route path="/home/login" component={Login} />
 

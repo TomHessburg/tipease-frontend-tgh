@@ -1,24 +1,30 @@
 import React from 'react'
-
-import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 
 export default function(ComposedComponent){
-    
-    const isAuthenticated = true;
 
-    const Authenticate = props => {
+    class Authenticate extends React.Component{
 
+        componentWillMount(){
+            if(!this.props.isAuthenticated){
+                this.props.history.push('/home/login')
+            }
+        }
 
-        if(isAuthenticated){
+        render(){
             return (
-                <ComposedComponent {...props} />
+                <ComposedComponent {...this.props} />
             )
-        }else{
-            return <Redirect to="/home/login" />
         }
     }
 
-    return Authenticate;
+    const mapStateToProps = state => {
+        return {
+            isAuthenticated: state.isAuthenticated
+        }
+    }
+
+    return connect(mapStateToProps, {})(Authenticate);
 }
 

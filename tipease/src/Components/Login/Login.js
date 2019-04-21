@@ -3,6 +3,9 @@ import styles from './Login.module.scss';
 import { Button, Divider, Form, Grid, Segment, Icon, Radio } from 'semantic-ui-react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { loginSuccess } from '../../actions';
 
 
 const Login = props => {
@@ -68,12 +71,10 @@ const Login = props => {
                                 axios.post(`https://buildtipease.herokuapp.com/auth/users/login`,credentials)
                                     .then(res => {
                                         if(res.status === 200){
-                                            localStorage.setItem("token", res.data.token);
-                                            console.log(localStorage.getItem('token'));
-                                            if(type === 'users'){
+                                            props.loginSuccess(res.data);
+                                            if(type === "users"){
                                                 props.history.push('/users/dashboard');
-                                            }
-                                            if(type === 'serviceWorkers'){
+                                            }else{
                                                 props.history.push('/serviceWorkers/dashboard');
                                             }
                                         }
@@ -98,4 +99,10 @@ const Login = props => {
     )
 }
 
-export default Login;
+const mapStateToProps = state => {
+    return {
+        isAuthenticated: state.isAuthenticated
+    }
+}
+
+export default connect(mapStateToProps, { loginSuccess })(Login);

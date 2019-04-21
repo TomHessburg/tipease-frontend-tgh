@@ -1,12 +1,23 @@
-import React from 'react'
-import styles from './ServiceWorkers.module.scss'
+import React from 'react';
+//import styles from './ServiceWorkers.module.scss'
+import TopBar from './TopBar/TopBar.js';
+import SWDashboard from './SWDashboard/SWDashboard.js';
+import { connect } from 'react-redux';
+
 
 const ServiceWorkers = props => {
   return (
     <div>
-      hi from Service Workers
+      <TopBar />
+      <SWDashboard />
     </div>
   )
 }
 
-export default ServiceWorkers;
+const mapStateToProps = state => {
+  return{
+    ...state
+  }
+}
+
+export default connect(mapStateToProps, {})(ServiceWorkers);

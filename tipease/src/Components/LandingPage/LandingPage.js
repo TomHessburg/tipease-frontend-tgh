@@ -10,9 +10,9 @@ const LandingPage = props => {
                 <div className={styles.headerLeft}>
                     <h1>tipease</h1>
                     <ul className={styles.navLinks}>
-                        <a href="#">home</a>
-                        <a href="#">about us</a>
-                        <a href="#">FAQ</a>
+                        <a href="https://www.facebook.com/">home</a>
+                        <a href="https://www.facebook.com/">about us</a>
+                        <a href="https://www.facebook.com/">FAQ</a>
                     </ul>
                 </div>
             </header>

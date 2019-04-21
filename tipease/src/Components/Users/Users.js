@@ -1,7 +1,8 @@
-import React from 'react'
-import styles from './Users.module.scss'
+import React from 'react';
+import { connect } from 'react-redux';
 
 const Users = props => {
+  console.log(props);
   return (
     <div>
       hi from Users
@@ -9,4 +10,10 @@ const Users = props => {
   )
 }
 
-export default Users;
+const mapStateToProps = state => {
+  return{
+    ...state
+  }
+}
+
+export default connect(mapStateToProps, {})(Users);
