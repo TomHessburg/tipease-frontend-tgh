@@ -4,15 +4,13 @@ const initialState = {
   isAuthenticated: false
 };
 const rootReducer = (state = initialState, action) => {
- 
   switch (action.type) {
-    case LOGIN_SUCCESS: 
+    case LOGIN_SUCCESS:
       localStorage.setItem("token", action.payload.token);
-      return{
+      return {
         isAuthenticated: true,
         ...action.payload.userInfo
-      }
-
+      };
 
     default:
       return state;
@@ -20,4 +18,3 @@ const rootReducer = (state = initialState, action) => {
 };
 
 export default rootReducer;
- 
