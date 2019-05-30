@@ -8,7 +8,6 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import moduleStyles from "./SWDashboard.module.scss";
 import Grid from "@material-ui/core/Grid";
-import Icon from "@material-ui/core/Icon";
 
 const styles = theme => ({
   root: {
@@ -126,17 +125,7 @@ function DashBoard(props) {
                                 alignItems: "center",
                                 justifyContent: "center"
                               }}
-                            >
-                              <Icon
-                                style={{ margin: "0 5px", cursor: "pointer" }}
-                              >
-                                email
-                              </Icon>
-
-                              <Typography variant="body2" gutterBottom>
-                                say thank you
-                              </Typography>
-                            </div>
+                            />
                           ) : null}
 
                           <hr />

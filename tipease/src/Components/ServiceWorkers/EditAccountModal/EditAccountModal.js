@@ -5,7 +5,11 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
-export default function EditAccountModal(props) {
+import { transferToBank, payYourself20Bucks } from "../../../actions";
+
+import { connect } from "react-redux";
+
+function EditAccountModal(props) {
   const [username, setUsername] = useState("");
   const [fullname, setFullname] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
@@ -169,10 +173,66 @@ export default function EditAccountModal(props) {
             Submit
           </Button>
         </form>
+        <hr />
+        <Typography variant="h6">balance: ${props.accountBalance}</Typography>
+        <Button
+          onClick={e => {
+            props.transferToBank(props.id);
+          }}
+          style={{ margin: "16px" }}
+          variant="contained"
+          color="primary"
+        >
+          Transfer money to bank
+        </Button>
+        <Button
+          onClick={e => {
+            props.payYourself20Bucks(props.id);
+          }}
+          style={{ margin: "16px" }}
+          variant="contained"
+          color="primary"
+        >
+          pay yourself 20 bucks (for testing purposes, of course :) )
+        </Button>
       </EditForm>
     </EditModal>
   );
 }
+
+const mapStateToProps = state => {
+  const refactoredACB = `${state.accountBalance}`;
+  const [one, two] = refactoredACB.split(".");
+  let answerPiece = one
+    .split("")
+    .reverse()
+    .map((num, i) => {
+      let num2 = i + 1;
+      if (num2 % 3 === 0) {
+        return "," + num;
+      } else {
+        return num;
+      }
+    })
+    .reverse()
+    .join("");
+
+  if (two) {
+    answerPiece += "." + two;
+    if (`${two}`.length === 1) {
+      answerPiece += "0";
+    }
+  }
+  return {
+    accountBalance: answerPiece,
+    id: state.id
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { transferToBank, payYourself20Bucks }
+)(EditAccountModal);
 
 const EditModal = styled.div`
   cursor: pointer;
@@ -187,9 +247,10 @@ const EditModal = styled.div`
 const EditForm = styled(Paper)`
   cursor: default;
   width: 480px;
-  margin: 30px auto;
-  padding: 0 16px 16px 16px;
+  height: 80vh;
   overflow: scroll;
+  margin: 60px auto;
+  padding: 0 16px 16px 16px;
   form {
     display: flex;
     justify-content: center;
