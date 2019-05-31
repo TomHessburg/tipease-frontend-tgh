@@ -3,16 +3,20 @@ import {
   TRANSFER_TO_BANK_FAIL,
   TRANSFER_TO_BANK_SUCCESS,
   TRANSFER_TO_BANK_START,
-  PAY_YOURSELF_20_START,
   PAY_YOURSELF_20_SUCCESS,
-  PAY_YOURSELF_20_FAIL
+  EDIT_ACCOUNT_START,
+  EDIT_ACCOUNT_SUCCESS,
+  EDIT_ACCOUNT_FAIL
 } from "../actions";
 
 const initialState = {
   isAuthenticated: false,
   transferSuccess: false,
   transferFail: false,
-  transferStart: false
+  transferStart: false,
+  ubdateSuccess: false,
+  updateFail: false,
+  updatingAccount: false
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -52,6 +56,29 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         accountBalance: state.accountBalance + 20
+      };
+
+    case EDIT_ACCOUNT_START:
+      return {
+        ...state,
+        updateFail: false,
+        ubdateSuccess: false,
+        updatingAccount: true
+      };
+    case EDIT_ACCOUNT_SUCCESS:
+      return {
+        ...state,
+        ...action.payload,
+        ubdateSuccess: true,
+        updateFail: false,
+        updatingAccount: false
+      };
+    case EDIT_ACCOUNT_FAIL:
+      return {
+        ...state,
+        updateFail: true,
+        ubdateSuccess: false,
+        updatingAccount: false
       };
 
     default:

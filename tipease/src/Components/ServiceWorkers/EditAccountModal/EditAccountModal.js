@@ -5,7 +5,11 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
-import { transferToBank, payYourself20Bucks } from "../../../actions";
+import {
+  transferToBank,
+  payYourself20Bucks,
+  editSWAccount
+} from "../../../actions";
 
 import { connect } from "react-redux";
 
@@ -20,6 +24,56 @@ function EditAccountModal(props) {
   const [oldPass, setOldPass] = useState("");
   const [newPass, setNewPass] = useState("");
   const [rtPass, setRtPass] = useState("");
+
+  const editAccountMain = () => {
+    const newUserInfo = {};
+
+    if (username.length) {
+      newUserInfo["username"] = username;
+      setUsername("");
+    }
+    if (fullname.length) {
+      newUserInfo["fullName"] = fullname;
+      setFullname("");
+    }
+    if (photoUrl.length) {
+      newUserInfo["photoUrl"] = photoUrl;
+      setPhotoUrl("");
+    }
+    if (serviceType.length) {
+      newUserInfo["serviceType"] = serviceType;
+      setServiceType("");
+    }
+    if (tagLine.length) {
+      newUserInfo["tagline"] = tagLine;
+      setTagLine("");
+    }
+    if (timeAtJob.length) {
+      newUserInfo["timeAtJob"] = timeAtJob;
+      setTimeAtJob("");
+    }
+    if (workplace.length) {
+      newUserInfo["workplace"] = workplace;
+      setWorkpalce("");
+    }
+
+    props.editSWAccount(newUserInfo, props.id);
+    console.log(newUserInfo);
+  };
+
+  const editPassword = () => {
+    //need to change be model to require old password comparison.
+    //not doing this right this second as to not mess up Viveks application at current.
+    if (newPass === rtPass) {
+      props.editSWAccount({ password: newPass }, props.id);
+      setOldPass("");
+      setNewPass("");
+      setRtPass("");
+    } else {
+      //do some error handeling
+      console.log("...");
+    }
+  };
 
   return (
     <EditModal
@@ -108,16 +162,7 @@ function EditAccountModal(props) {
           <Button
             onClick={e => {
               e.preventDefault();
-              const accountChanges = {
-                username,
-                fullname,
-                photoUrl,
-                serviceType,
-                timeAtJob,
-                tagLine,
-                workplace
-              };
-              console.log(accountChanges);
+              editAccountMain();
             }}
             variant="contained"
             color="primary"
@@ -160,12 +205,7 @@ function EditAccountModal(props) {
           <Button
             onClick={e => {
               e.preventDefault();
-              if (newPass === rtPass) {
-                console.log({
-                  oldPass,
-                  newPass
-                });
-              }
+              editPassword();
             }}
             variant="contained"
             color="primary"
@@ -231,7 +271,7 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { transferToBank, payYourself20Bucks }
+  { transferToBank, payYourself20Bucks, editSWAccount }
 )(EditAccountModal);
 
 const EditModal = styled.div`

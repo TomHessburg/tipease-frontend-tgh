@@ -10,6 +10,10 @@ export const PAY_YOURSELF_20_START = "PAY_YOURSELF_20_START";
 export const PAY_YOURSELF_20_SUCCESS = "PAY_YOURSELF_20_SUCCESS";
 export const PAY_YOURSELF_20_FAIL = "PAY_YOURSELF_20_FAIL";
 
+export const EDIT_ACCOUNT_START = "EDIT_ACCOUNT_START";
+export const EDIT_ACCOUNT_SUCCESS = "EDIT_ACCOUNT_SUCCESS";
+export const EDIT_ACCOUNT_FAIL = "EDIT_ACCOUNT_FAIL";
+
 export const loginSuccess = user => {
   return {
     type: LOGIN_SUCCESS,
@@ -17,23 +21,29 @@ export const loginSuccess = user => {
   };
 };
 
-//opted againt this because of ease of routing on login.
-//simply calling the axios call inside of the component ends up making for bit less code
+export const editSWAccount = (newSettings, id) => dispatch => {
+  dispatch({ type: EDIT_ACCOUNT_START });
 
-// export const login = credentials => dispatch => {
-//   dispatch({ type: LOGIN_START });
+  const token = localStorage.getItem("token");
 
-//   axios
-//     .post(`https://buildtipease.herokuapp.com/auth/users/login`, credentials)
-//     .then(res => {
-//       console.log(res);
-//       dispatch({ type: LOGIN_SUCCESS });
-//     })
-//     .catch(err => {
-//       console.log(err);
-//       dispatch({ type: LOGIN_FAIL });
-//     });
-// };
+  axios
+    .put(
+      `https://buildtipease.herokuapp.com/serviceWorkers/${id}`,
+      newSettings,
+      { headers: { authorization: token } }
+    )
+    .then(response => {
+      dispatch({
+        type: EDIT_ACCOUNT_SUCCESS,
+        payload: newSettings
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: EDIT_ACCOUNT_FAIL
+      });
+    });
+};
 
 export const transferToBank = userId => dispatch => {
   console.log(userId);
