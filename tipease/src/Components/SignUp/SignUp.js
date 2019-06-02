@@ -78,7 +78,24 @@ const SignUp = props => {
           </div>
           <Button
             onClick={e => {
-              console.log("creating user...");
+              console.log("creating service worker...");
+              const newUser = {
+                fullName: fullName,
+                password: password,
+                photoUrl: photoUrl,
+                username: userName
+              };
+              if (rtPassword === password) {
+                axios
+                  .post(
+                    "https://buildtipease.herokuapp.com/auth/users/register",
+                    newUser
+                  )
+                  .then(res => {
+                    props.history.push("/home/login");
+                  })
+                  .catch(err => console.log(err));
+              }
             }}
             content="Sign Up"
             primary
@@ -167,7 +184,9 @@ const SignUp = props => {
                     "https://buildtipease.herokuapp.com/auth/serviceWorkers/register",
                     newUser
                   )
-                  .then(res => console.log(res))
+                  .then(res => {
+                    props.history.push("/home/login");
+                  })
                   .catch(err => console.log(err));
               }
             }}
