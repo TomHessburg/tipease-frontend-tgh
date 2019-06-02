@@ -94,7 +94,14 @@ const Login = props => {
           </Grid.Column>
 
           <Grid.Column verticalAlign="middle">
-            <Button content="Sign up" icon="signup" size="big" />
+            <Button
+              onClick={e => {
+                props.history.push("/home/signup");
+              }}
+              content="Sign up"
+              icon="signup"
+              size="big"
+            />
           </Grid.Column>
         </Grid>
 

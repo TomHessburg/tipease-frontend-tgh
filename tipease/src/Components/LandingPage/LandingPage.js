@@ -24,7 +24,7 @@ const LandingPage = props => {
               <Link to="/home/login">Login</Link>
             </Button>
             <Button>
-              <Link className={styles.farRight} to="/home/login">
+              <Link className={styles.farRight} to="/home/signup">
                 Sign up
               </Link>
             </Button>
