@@ -1,19 +1,23 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
+import UsersTopBar from "./TopBar/UsersTopBar.js";
 
 const Users = props => {
   console.log(props);
   return (
     <div>
-      hi from Users
+      <UsersTopBar history={props.history} />
     </div>
-  )
-}
+  );
+};
 
 const mapStateToProps = state => {
-  return{
+  return {
     ...state
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, {})(Users);
+export default connect(
+  mapStateToProps,
+  {}
+)(Users);
