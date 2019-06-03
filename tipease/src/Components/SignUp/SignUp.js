@@ -78,7 +78,6 @@ const SignUp = props => {
           </div>
           <Button
             onClick={e => {
-              console.log("creating service worker...");
               const newUser = {
                 fullName: fullName,
                 password: password,
@@ -170,7 +169,6 @@ const SignUp = props => {
           </div>
           <Button
             onClick={e => {
-              console.log("creating service worker...");
               const newUser = {
                 fullName: fullName,
                 password: password,

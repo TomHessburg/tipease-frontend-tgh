@@ -6,7 +6,10 @@ import {
   PAY_YOURSELF_20_SUCCESS,
   EDIT_ACCOUNT_START,
   EDIT_ACCOUNT_SUCCESS,
-  EDIT_ACCOUNT_FAIL
+  EDIT_ACCOUNT_FAIL,
+  GET_ALL_SW_START,
+  GET_ALL_SW_SUCCESS,
+  GET_ALL_SW_FAIL
 } from "../actions";
 
 const initialState = {
@@ -36,7 +39,6 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case TRANSFER_TO_BANK_SUCCESS:
-      console.log(state);
       return {
         ...state,
         transferStart: false,
@@ -79,6 +81,12 @@ const rootReducer = (state = initialState, action) => {
         updateFail: true,
         ubdateSuccess: false,
         updatingAccount: false
+      };
+
+    case GET_ALL_SW_SUCCESS:
+      return {
+        ...state,
+        serviceWorkers: [...action.payload]
       };
 
     default:

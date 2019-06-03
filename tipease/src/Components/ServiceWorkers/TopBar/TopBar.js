@@ -76,7 +76,6 @@ function SearchAppBar(props) {
             color="inherit"
             aria-label="Open drawer"
             onClick={e => {
-              console.log(props);
               props.history.push("/ServiceWorkers/dashboard/edit");
             }}
           >

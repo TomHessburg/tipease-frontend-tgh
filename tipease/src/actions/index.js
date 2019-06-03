@@ -14,6 +14,10 @@ export const EDIT_ACCOUNT_START = "EDIT_ACCOUNT_START";
 export const EDIT_ACCOUNT_SUCCESS = "EDIT_ACCOUNT_SUCCESS";
 export const EDIT_ACCOUNT_FAIL = "EDIT_ACCOUNT_FAIL";
 
+export const GET_ALL_SW_START = "GET_ALL_SW_START";
+export const GET_ALL_SW_SUCCESS = "GET_ALL_SW_SUCCESS";
+export const GET_ALL_SW_FAIL = "GET_ALL_SW_FAIL";
+
 export const loginSuccess = user => {
   return {
     type: LOGIN_SUCCESS,
@@ -46,7 +50,6 @@ export const editSWAccount = (newSettings, id) => dispatch => {
 };
 
 export const transferToBank = userId => dispatch => {
-  console.log(userId);
   dispatch({
     type: TRANSFER_TO_BANK_START
   });
@@ -61,13 +64,11 @@ export const transferToBank = userId => dispatch => {
       { headers: { authorization: token } }
     )
     .then(res => {
-      console.log(res);
       dispatch({
         type: TRANSFER_TO_BANK_SUCCESS
       });
     })
     .catch(err => {
-      console.log(err);
       dispatch({
         type: TRANSFER_TO_BANK_FAIL
       });
@@ -87,10 +88,24 @@ export const payYourself20Bucks = userId => dispatch => {
       { headers: { authorization: token } }
     )
     .then(res => {
-      console.log(res);
       dispatch({ type: PAY_YOURSELF_20_SUCCESS });
     })
     .catch(err => {
       dispatch({ type: PAY_YOURSELF_20_FAIL });
+    });
+};
+
+export const getAllServiceWorkers = () => dispatch => {
+  const token = localStorage.getItem("token");
+  dispatch({ type: GET_ALL_SW_START });
+  axios
+    .get("https://buildtipease.herokuapp.com/serviceWorkers", {
+      headers: { authorization: token }
+    })
+    .then(res => {
+      dispatch({ type: GET_ALL_SW_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: GET_ALL_SW_FAIL });
     });
 };
