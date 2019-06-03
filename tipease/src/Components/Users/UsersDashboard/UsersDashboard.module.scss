@@ -9,29 +9,10 @@
   background: rgb(252, 252, 252);
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.413);
   position: relative;
-
-  img {
-    position: absolute;
-    right: -5px;
-    top: -60px;
-    box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.345);
-    width: 130px;
-    height: 130px;
-    border-radius: 50%;
-    @media (max-width: 650px) {
-      width: 100px;
-      height: 100px;
-    }
-    @media (max-width: 550px) {
-      position: static;
-      border-radius: 0%;
-      box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.345);
-    }
-  }
 }
 
 .topDash {
-  padding: 10px 0;
+  padding: 15px 0;
   @media (max-width: 550px) {
     display: flex;
     justify-content: space-around;
@@ -42,5 +23,24 @@
   max-height: 500px;
   @media (max-width: 1500px) {
     height: 230px;
+  }
+}
+
+.profileImg {
+  position: absolute;
+  right: -5px;
+  top: -60px;
+  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.345);
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  @media (max-width: 650px) {
+    width: 100px;
+    height: 100px;
+  }
+  @media (max-width: 550px) {
+    position: static;
+    border-radius: 0%;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.345);
   }
 }
