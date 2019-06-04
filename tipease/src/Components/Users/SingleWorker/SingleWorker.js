@@ -6,14 +6,18 @@ import Typography from "@material-ui/core/Typography";
 import CardContent from "@material-ui/core/CardContent";
 import CardActionArea from "@material-ui/core/CardActionArea";
 
+import TipSW from "../TipSW/TipSW.js";
+
 function SingleWorker(props) {
   return (
     <Card
       style={{
         width: 345,
-        margin: "40px"
+        margin: "40px",
+        position: "relative"
       }}
     >
+      <TipSW worker={props.worker} />
       <img
         style={{
           background: "black",
