@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
@@ -9,6 +9,8 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import TipSW from "../TipSW/TipSW.js";
 
 function SingleWorker(props) {
+  const [showing, setShowing] = useState(false);
+
   return (
     <Card
       style={{
@@ -17,7 +19,7 @@ function SingleWorker(props) {
         position: "relative"
       }}
     >
-      <TipSW worker={props.worker} />
+      <TipSW setShowing={setShowing} worker={props.worker} show={showing} />
       <img
         style={{
           background: "black",
@@ -45,7 +47,13 @@ function SingleWorker(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button
+          onClick={e => {
+            setShowing(!showing);
+          }}
+          size="small"
+          color="primary"
+        >
           tip
         </Button>
         <Button size="small" color="primary">
