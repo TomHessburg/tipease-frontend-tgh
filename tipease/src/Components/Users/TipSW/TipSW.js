@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import styled from "styled-components";
@@ -9,7 +10,9 @@ import Button from "@material-ui/core/Button";
 
 import ReactStars from "react-stars";
 
-export default function TipSW(props) {
+import { rateServiceWorker, tipServiceWorker } from "../../../actions";
+
+function TipSW(props) {
   const [amount, setAmmount] = useState(0);
   const [rating, setRating] = useState(0);
 
@@ -70,10 +73,16 @@ export default function TipSW(props) {
       <Button
         onClick={e => {
           if (amount > 0) {
-            console.log(amount);
+            const tip = {
+              senderUsername: props.username,
+              payment: amount
+            };
+            props.tipServiceWorker(props.worker.id, tip);
+            setAmmount(0);
           }
           if (rating > 0) {
-            console.log(rating);
+            props.rateServiceWorker(props.worker.id, { rating });
+            setRating(0);
           }
         }}
         variant="contained"
@@ -84,6 +93,17 @@ export default function TipSW(props) {
     </TipWorkerWrapper>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    username: state.username
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { rateServiceWorker, tipServiceWorker }
+)(TipSW);
 
 const TipWorkerWrapper = styled(Paper)`
   position: absolute;

@@ -109,3 +109,35 @@ export const getAllServiceWorkers = () => dispatch => {
       dispatch({ type: GET_ALL_SW_FAIL });
     });
 };
+
+export const tipServiceWorker = (id, payment) => dispatch => {
+  const token = localStorage.getItem("token");
+  axios
+    .put(
+      `https://buildtipease.herokuapp.com/serviceWorkers/pay/${id}`,
+      payment,
+      { headers: { authorization: token } }
+    )
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+export const rateServiceWorker = (id, rating) => dispatch => {
+  const token = localStorage.getItem("token");
+  axios
+    .put(
+      `https://buildtipease.herokuapp.com/serviceWorkers/rate/${id}`,
+      rating,
+      { headers: { authorization: token } }
+    )
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
