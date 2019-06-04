@@ -113,7 +113,11 @@ function DashBoard(props) {
                         )
                         .map(worker => {
                           return (
-                            <SingleWorker worker={worker} key={worker.id} />
+                            <SingleWorker
+                              history={props.history}
+                              worker={worker}
+                              key={worker.id}
+                            />
                           );
                         })}
                   </div>

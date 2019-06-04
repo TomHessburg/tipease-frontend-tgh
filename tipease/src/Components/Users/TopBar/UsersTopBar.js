@@ -68,7 +68,10 @@ function UsersTopBar(props) {
   const { classes } = props;
 
   return (
-    <div className={classes.root}>
+    <div
+      className={classes.root}
+      style={{ position: "sticky", top: 0, zIndex: 4 }}
+    >
       <AppBar position="static">
         <Toolbar>
           <IconButton

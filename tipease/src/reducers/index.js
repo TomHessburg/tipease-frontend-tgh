@@ -7,9 +7,7 @@ import {
   EDIT_ACCOUNT_START,
   EDIT_ACCOUNT_SUCCESS,
   EDIT_ACCOUNT_FAIL,
-  GET_ALL_SW_START,
-  GET_ALL_SW_SUCCESS,
-  GET_ALL_SW_FAIL
+  GET_ALL_SW_SUCCESS
 } from "../actions";
 
 const initialState = {

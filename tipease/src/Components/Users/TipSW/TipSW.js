@@ -15,6 +15,7 @@ import { rateServiceWorker, tipServiceWorker } from "../../../actions";
 function TipSW(props) {
   const [amount, setAmmount] = useState(0);
   const [rating, setRating] = useState(0);
+  const [thankYou, setThankYou] = useState(false);
 
   return (
     <TipWorkerWrapper
@@ -79,10 +80,18 @@ function TipSW(props) {
             };
             props.tipServiceWorker(props.worker.id, tip);
             setAmmount(0);
+            setThankYou(true);
+            setTimeout(() => {
+              setThankYou(false);
+            }, 10000);
           }
           if (rating > 0) {
             props.rateServiceWorker(props.worker.id, { rating });
             setRating(0);
+            setThankYou(true);
+            setTimeout(() => {
+              setThankYou(false);
+            }, 10000);
           }
         }}
         variant="contained"
@@ -90,6 +99,19 @@ function TipSW(props) {
       >
         submit
       </Button>
+      <ThankYouModal
+        style={
+          thankYou
+            ? {
+                display: "block"
+              }
+            : { display: "none" }
+        }
+      >
+        <Typography variant="h6" style={{ color: "white" }}>
+          Thank you for the tip, {props.username}!
+        </Typography>
+      </ThankYouModal>
     </TipWorkerWrapper>
   );
 }
@@ -116,4 +138,27 @@ const TipWorkerWrapper = styled(Paper)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+`;
+
+const ThankYouModal = styled.div`
+  margin-top: 200px;
+  z-index: 3;
+  background: #1d4ec4;
+  padding: 20px;
+  animation: MOVEUP 10s ease;
+
+  @keyframes MOVEUP {
+    0% {
+      margin-top: 200px;
+    }
+    10% {
+      margin-top: 0px;
+    }
+    85% {
+      margin-top: 0px;
+    }
+    100% {
+      margin-top: 150px;
+    }
+  }
 `;

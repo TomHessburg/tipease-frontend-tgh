@@ -7,6 +7,7 @@ import ServiceWorkers from "./Components/ServiceWorkers";
 import Users from "./Components/Users";
 import EditAccountModal from "./Components/ServiceWorkers/EditAccountModal/EditAccountModal.js";
 import SignUp from "./Components/SignUp";
+import SWProfile from "./Components/SWProfile/SWProfile.js";
 
 import Authenticate from "./Components/Authenticate/Authenticate.js";
 
@@ -32,6 +33,8 @@ class App extends Component {
         />
 
         <Route path="/Users/dashboard" component={Authenticate(Users)} />
+
+        <Route path="/worker/account/:id" component={Authenticate(SWProfile)} />
       </div>
     );
   }

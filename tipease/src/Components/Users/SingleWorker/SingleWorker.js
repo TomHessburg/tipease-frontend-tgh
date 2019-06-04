@@ -56,7 +56,13 @@ function SingleWorker(props) {
         >
           tip
         </Button>
-        <Button size="small" color="primary">
+        <Button
+          onClick={e => {
+            props.history.push(`/worker/account/${props.worker.id}`);
+          }}
+          size="small"
+          color="primary"
+        >
           See Profile
         </Button>
       </CardActions>
