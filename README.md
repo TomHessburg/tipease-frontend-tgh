@@ -1,6 +1,6 @@
 # tipEase Frontend
 
-https://tipease.netlify.com/home
+https://tipease.netlify.com/
 
 ## Frontend Technologies Used:
 
@@ -28,7 +28,7 @@ The first half of Lambda School is split into 3 sections:
 
 As a capstone to each of those sections, we join a team and complete a "Build Week". During build week, we are tasked with putting our new found skills into practice. tipEase was my assignment for the "Backend" section of class, however due to some unforseen complications, our frontend developer was unable to complete his portion of the assignment. Because of this, I took the opportunity to build out a frontend as well! And thus, everything you see here is built by me! Feel free to checkout all of the front end code here, as well as the deployed site:
 
-https://tipease.netlify.com/home
+https://tipease.netlify.com/
 
 and the backend code:
 
