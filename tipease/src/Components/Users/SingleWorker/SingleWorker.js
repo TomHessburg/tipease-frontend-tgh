@@ -6,6 +6,8 @@ import Typography from "@material-ui/core/Typography";
 import CardContent from "@material-ui/core/CardContent";
 import CardActionArea from "@material-ui/core/CardActionArea";
 
+import ReactStars from "react-stars";
+
 import TipSW from "../TipSW/TipSW.js";
 
 function SingleWorker(props) {
@@ -36,6 +38,7 @@ function SingleWorker(props) {
           <Typography gutterBottom variant="h5" component="h2">
             {props.worker.fullName}
           </Typography>
+
           <Typography
             style={{ minHeight: 100 }}
             variant="body2"
@@ -44,6 +47,12 @@ function SingleWorker(props) {
           >
             {props.worker.bio || "this service worker dosnt have a bio"}
           </Typography>
+          {/* <ReactStars
+            count={5}
+            value={props.worker.rating}
+            size={18}
+            color2={"#EB3D17"}
+          /> */}
         </CardContent>
       </CardActionArea>
       <CardActions>
