@@ -49,6 +49,28 @@ export const editSWAccount = (newSettings, id) => dispatch => {
     });
 };
 
+export const editUserAccount = (newSettings, id) => dispatch => {
+  dispatch({ type: EDIT_ACCOUNT_START });
+
+  const token = localStorage.getItem("token");
+
+  axios
+    .put(`https://buildtipease.herokuapp.com/users/${id}`, newSettings, {
+      headers: { authorization: token }
+    })
+    .then(response => {
+      dispatch({
+        type: EDIT_ACCOUNT_SUCCESS,
+        payload: newSettings
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: EDIT_ACCOUNT_FAIL
+      });
+    });
+};
+
 export const transferToBank = userId => dispatch => {
   dispatch({
     type: TRANSFER_TO_BANK_START

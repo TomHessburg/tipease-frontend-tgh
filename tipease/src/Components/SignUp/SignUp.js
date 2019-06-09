@@ -12,7 +12,9 @@ const SignUp = props => {
   const [password, setPassword] = useState("");
   const [rtPassword, setRtPassword] = useState("");
   const [fullName, setFullName] = useState("");
-  const [photoUrl, setPhotoUrl] = useState("");
+  const [photoUrl, setPhotoUrl] = useState(
+    "https://www.fiaregion1.com/wp-content/uploads/2018/06/gdpr_profile-picture.jpg"
+  );
   const [type, setType] = useState("users");
   const [service, setService] = useState("");
 
@@ -29,12 +31,12 @@ const SignUp = props => {
             value={fullName}
             onChange={e => setFullName(e.target.value)}
           />
-          <Form.Input
+          {/* <Form.Input
             label="Photo URL"
             type="text"
             value={photoUrl}
             onChange={e => setPhotoUrl(e.target.value)}
-          />
+          /> */}
           <Form.Input
             label="Username"
             type="text"
@@ -120,12 +122,12 @@ const SignUp = props => {
             value={service}
             onChange={e => setService(e.target.value)}
           />
-          <Form.Input
+          {/* <Form.Input
             label="Photo URL"
             type="text"
             value={photoUrl}
             onChange={e => setPhotoUrl(e.target.value)}
-          />
+          /> */}
           <Form.Input
             label="Username"
             type="text"

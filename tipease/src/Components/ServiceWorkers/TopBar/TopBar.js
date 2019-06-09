@@ -85,6 +85,18 @@ function SearchAppBar(props) {
             {props.fullName}
           </Typography>
           <div className={classes.grow} />
+          <Typography
+            style={{ cursor: "pointer" }}
+            variant="p"
+            color="inherit"
+            noWrap
+            onClick={e => {
+              localStorage.removeItem("toke");
+              props.history.push("/home");
+            }}
+          >
+            log out
+          </Typography>
         </Toolbar>
       </AppBar>
     </div>

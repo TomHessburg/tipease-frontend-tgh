@@ -5,11 +5,7 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
-import {
-  transferToBank,
-  payYourself20Bucks,
-  editSWAccount
-} from "../../../actions";
+import { editUserAccount } from "../../../actions";
 
 import { connect } from "react-redux";
 
@@ -17,12 +13,6 @@ function EditAccountModal(props) {
   const [username, setUsername] = useState("");
   const [fullname, setFullname] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
-  const [serviceType, setServiceType] = useState("");
-  const [tagLine, setTagLine] = useState("");
-  const [timeAtJob, setTimeAtJob] = useState("");
-  const [workplace, setWorkpalce] = useState("");
-
-  const [bio, setBio] = useState("");
 
   const [oldPass, setOldPass] = useState("");
   const [newPass, setNewPass] = useState("");
@@ -39,32 +29,8 @@ function EditAccountModal(props) {
       newUserInfo["fullName"] = fullname;
       setFullname("");
     }
-    if (photoUrl.length) {
-      newUserInfo["photoUrl"] = photoUrl;
-      setPhotoUrl("");
-    }
-    if (serviceType.length) {
-      newUserInfo["serviceType"] = serviceType;
-      setServiceType("");
-    }
-    if (tagLine.length) {
-      newUserInfo["tagline"] = tagLine;
-      setTagLine("");
-    }
-    if (timeAtJob.length) {
-      newUserInfo["timeAtJob"] = timeAtJob;
-      setTimeAtJob("");
-    }
-    if (workplace.length) {
-      newUserInfo["workplace"] = workplace;
-      setWorkpalce("");
-    }
-    if (bio.length) {
-      newUserInfo["bio"] = bio;
-      setBio("");
-    }
 
-    props.editSWAccount(newUserInfo, props.id);
+    props.editUserAccount(newUserInfo, props.id);
     console.log(newUserInfo);
   };
 
@@ -72,7 +38,7 @@ function EditAccountModal(props) {
     //need to change be model to require old password comparison.
     //not doing this right this second as to not mess up Viveks application at current.
     if (newPass === rtPass) {
-      props.editSWAccount({ password: newPass }, props.id);
+      props.editUserAccount({ password: newPass }, props.id);
       setOldPass("");
       setNewPass("");
       setRtPass("");
@@ -85,7 +51,7 @@ function EditAccountModal(props) {
   return (
     <EditModal
       onClick={e => {
-        props.history.push("/ServiceWorkers/dashboard");
+        props.history.push("/users/dashboard");
       }}
     >
       <EditForm
@@ -118,16 +84,6 @@ function EditAccountModal(props) {
           />
           <TextField
             style={{ margin: "8px" }}
-            label="bio"
-            margin="normal"
-            variant="outlined"
-            value={bio}
-            onChange={e => {
-              setBio(e.target.value);
-            }}
-          />
-          <TextField
-            style={{ margin: "8px" }}
             label="photo url"
             margin="normal"
             variant="outlined"
@@ -136,46 +92,7 @@ function EditAccountModal(props) {
               setPhotoUrl(e.target.value);
             }}
           />
-          <TextField
-            style={{ margin: "8px" }}
-            label="service type"
-            margin="normal"
-            variant="outlined"
-            value={serviceType}
-            onChange={e => {
-              setServiceType(e.target.value);
-            }}
-          />
-          <TextField
-            style={{ margin: "8px" }}
-            label="tagline"
-            margin="normal"
-            variant="outlined"
-            value={tagLine}
-            onChange={e => {
-              setTagLine(e.target.value);
-            }}
-          />
-          <TextField
-            style={{ margin: "8px" }}
-            label="time at job"
-            margin="normal"
-            variant="outlined"
-            value={timeAtJob}
-            onChange={e => {
-              setTimeAtJob(e.target.value);
-            }}
-          />
-          <TextField
-            style={{ margin: "8px" }}
-            label="workplace"
-            margin="normal"
-            variant="outlined"
-            value={workplace}
-            onChange={e => {
-              setWorkpalce(e.target.value);
-            }}
-          />
+
           <Button
             onClick={e => {
               e.preventDefault();
@@ -230,65 +147,20 @@ function EditAccountModal(props) {
             Submit
           </Button>
         </form>
-        <hr />
-        <Typography variant="h6">balance: ${props.accountBalance}</Typography>
-        <Button
-          onClick={e => {
-            props.transferToBank(props.id);
-          }}
-          style={{ margin: "16px" }}
-          variant="contained"
-          color="primary"
-        >
-          Transfer money to bank
-        </Button>
-        <Button
-          onClick={e => {
-            props.payYourself20Bucks(props.id);
-          }}
-          style={{ margin: "16px" }}
-          variant="contained"
-          color="primary"
-        >
-          pay yourself 20 bucks (for testing purposes, of course :) )
-        </Button>
       </EditForm>
     </EditModal>
   );
 }
 
 const mapStateToProps = state => {
-  const refactoredACB = `${state.accountBalance}`;
-  const [one, two] = refactoredACB.split(".");
-  let answerPiece = one
-    .split("")
-    .reverse()
-    .map((num, i) => {
-      let num2 = i + 1;
-      if (num2 % 3 === 0) {
-        return "," + num;
-      } else {
-        return num;
-      }
-    })
-    .reverse()
-    .join("");
-
-  if (two) {
-    answerPiece += "." + two;
-    if (`${two}`.length === 1) {
-      answerPiece += "0";
-    }
-  }
   return {
-    accountBalance: answerPiece,
     id: state.id
   };
 };
 
 export default connect(
   mapStateToProps,
-  { transferToBank, payYourself20Bucks, editSWAccount }
+  { editUserAccount }
 )(EditAccountModal);
 
 const EditModal = styled.div`
@@ -297,6 +169,7 @@ const EditModal = styled.div`
   height: 100vh;
   background: rgba(0, 0, 0, 0.8);
   position: absolute;
+  z-index: 10;
   top: 0;
   left: 0;
 `;

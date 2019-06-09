@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
@@ -80,7 +80,7 @@ function UsersTopBar(props) {
             aria-label="Open drawer"
             onClick={e => {
               console.log(props);
-              //   props.history.push("/users/dashboard/edit");
+              props.history.push("/users/dashboard/edit");
             }}
           >
             <AccountCircle />
@@ -89,6 +89,18 @@ function UsersTopBar(props) {
             {props.fullName}
           </Typography>
           <div className={classes.grow} />
+          <Typography
+            style={{ cursor: "pointer" }}
+            variant="p"
+            color="inherit"
+            noWrap
+            onClick={e => {
+              localStorage.removeItem("toke");
+              props.history.push("/home");
+            }}
+          >
+            log out
+          </Typography>
         </Toolbar>
       </AppBar>
     </div>

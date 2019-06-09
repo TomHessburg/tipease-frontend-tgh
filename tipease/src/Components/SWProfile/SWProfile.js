@@ -21,12 +21,13 @@ function SWProfile(props) {
 
   return (
     <Wrapper>
-      <UsersTopBar fullName={props.fullName} />
+      <UsersTopBar history={props.history} fullName={props.fullName} />
       <Hero>
         <TopImg style={{ backgroundImage: `url(${worker.photoUrl})` }} />
 
         <Typography variant="h3">{worker.fullName}</Typography>
-        <Typography variant="h6">"{worker.tagline}"</Typography>
+        <Typography variant="h5">{worker.username}</Typography>
+        <Typography variant="p">"{worker.tagline}"</Typography>
         <hr style={{ margin: "16px" }} />
         <Typography variant="p" style={{ marginBottom: "16px" }}>
           {worker.bio}
