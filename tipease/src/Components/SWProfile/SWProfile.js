@@ -3,8 +3,11 @@ import { connect } from "react-redux";
 import UsersTopBar from "../Users/TopBar/UsersTopBar.js";
 
 import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 
 import styled from "styled-components";
+
+import TipSW from "../Users/TipSW/TipSW.js";
 
 function SWProfile(props) {
   const [worker, setWorker] = useState({});
@@ -21,7 +24,19 @@ function SWProfile(props) {
       <UsersTopBar fullName={props.fullName} />
       <Hero>
         <TopImg style={{ backgroundImage: `url(${worker.photoUrl})` }} />
-        <p>{worker.fullName}</p>
+
+        <Typography variant="h3">{worker.fullName}</Typography>
+        <Typography variant="h6">"{worker.tagline}"</Typography>
+        <hr style={{ margin: "16px" }} />
+        <Typography variant="p" style={{ marginBottom: "16px" }}>
+          {worker.bio}
+        </Typography>
+        <WorkerInfo>
+          <Typography variant="p">rating: {worker.rating}</Typography>
+          <Typography variant="p">service: {worker.serviceType}</Typography>
+          <Typography variant="p">workplace: {worker.workplace}</Typography>
+          <Typography variant="p">time at job: {worker.timeAtJob}</Typography>
+        </WorkerInfo>
       </Hero>
     </Wrapper>
   );
@@ -50,6 +65,7 @@ const Hero = styled(Paper)`
   max-width: 1100px;
   min-height: 400px;
   margin: 40px auto;
+  padding: 8px;
 `;
 
 const TopImg = styled.div`
@@ -61,4 +77,11 @@ const TopImg = styled.div`
   background-position: center;
   background-size: 100%;
   box-shadow: 0 12px 12px -5px rgba(0, 0, 0, 0.4);
+`;
+
+const WorkerInfo = styled.div`
+  width: 100%;
+  padding: 16px;
+  text-align: left;
+  background: rgba(0, 0, 0, 0.03);
 `;

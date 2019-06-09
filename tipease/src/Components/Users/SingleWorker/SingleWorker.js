@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import CardContent from "@material-ui/core/CardContent";
 import CardActionArea from "@material-ui/core/CardActionArea";
 
-import ReactStars from "react-stars";
+// import ReactStars from "react-stars";
 
 import TipSW from "../TipSW/TipSW.js";
 
