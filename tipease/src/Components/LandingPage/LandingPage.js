@@ -10,9 +10,27 @@ const LandingPage = props => {
         <div className={styles.headerLeft}>
           <h1>tipEase</h1>
           <ul className={styles.navLinks}>
-            <a href="https://www.facebook.com/">home</a>
-            <a href="https://www.facebook.com/">about us</a>
-            <a href="https://www.facebook.com/">FAQ</a>
+            <a
+              href="https://github.com/TomHessburg/tipease-frontend-tgh"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              home
+            </a>
+            <a
+              href="https://github.com/TomHessburg/tipease-frontend-tgh"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              about us
+            </a>
+            <a
+              href="https://github.com/lambda-build-tipsease/build-tipsease-be"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              FAQ
+            </a>
           </ul>
         </div>
       </header>

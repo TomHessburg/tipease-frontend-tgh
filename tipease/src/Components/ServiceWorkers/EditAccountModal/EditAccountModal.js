@@ -65,7 +65,7 @@ function EditAccountModal(props) {
     }
 
     props.editSWAccount(newUserInfo, props.id);
-    console.log(newUserInfo);
+    // console.log(newUserInfo);
   };
 
   const editPassword = () => {
@@ -78,7 +78,7 @@ function EditAccountModal(props) {
       setRtPass("");
     } else {
       //do some error handeling
-      console.log("...");
+      // console.log("...");
     }
   };
 

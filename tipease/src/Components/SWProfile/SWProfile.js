@@ -7,8 +7,6 @@ import Typography from "@material-ui/core/Typography";
 
 import styled from "styled-components";
 
-import TipSW from "../Users/TipSW/TipSW.js";
-
 function SWProfile(props) {
   const [worker, setWorker] = useState({});
 
@@ -27,16 +25,25 @@ function SWProfile(props) {
 
         <Typography variant="h3">{worker.fullName}</Typography>
         <Typography variant="h5">{worker.username}</Typography>
-        <Typography variant="p">"{worker.tagline}"</Typography>
+        <Typography variant="subtitle1">"{worker.tagline}"</Typography>
         <hr style={{ margin: "16px" }} />
-        <Typography variant="p" style={{ marginBottom: "16px" }}>
+        <Typography
+          variant="subtitle1"
+          style={{ marginBottom: "16px", padding: "8px" }}
+        >
           {worker.bio}
         </Typography>
         <WorkerInfo>
-          <Typography variant="p">rating: {worker.rating}</Typography>
-          <Typography variant="p">service: {worker.serviceType}</Typography>
-          <Typography variant="p">workplace: {worker.workplace}</Typography>
-          <Typography variant="p">time at job: {worker.timeAtJob}</Typography>
+          <Typography variant="subtitle1">rating: {worker.rating}</Typography>
+          <Typography variant="subtitle1">
+            service: {worker.serviceType}
+          </Typography>
+          <Typography variant="subtitle1">
+            workplace: {worker.workplace}
+          </Typography>
+          <Typography variant="subtitle1">
+            time at job: {worker.timeAtJob}
+          </Typography>
         </WorkerInfo>
       </Hero>
     </Wrapper>
@@ -66,7 +73,7 @@ const Hero = styled(Paper)`
   max-width: 1100px;
   min-height: 400px;
   margin: 40px auto;
-  padding: 8px;
+  padding-bottom: 8px;
 `;
 
 const TopImg = styled.div`

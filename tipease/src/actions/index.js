@@ -141,10 +141,10 @@ export const tipServiceWorker = (id, payment) => dispatch => {
       { headers: { authorization: token } }
     )
     .then(res => {
-      console.log(res);
+      // console.log(res);
     })
     .catch(err => {
-      console.log(err);
+      // console.log(err);
     });
 };
 
@@ -157,9 +157,9 @@ export const rateServiceWorker = (id, rating) => dispatch => {
       { headers: { authorization: token } }
     )
     .then(res => {
-      console.log(res);
+      // console.log(res);
     })
     .catch(err => {
-      console.log(err);
+      // console.log(err);
     });
 };

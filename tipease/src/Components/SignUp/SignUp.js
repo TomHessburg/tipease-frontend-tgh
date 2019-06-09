@@ -12,9 +12,9 @@ const SignUp = props => {
   const [password, setPassword] = useState("");
   const [rtPassword, setRtPassword] = useState("");
   const [fullName, setFullName] = useState("");
-  const [photoUrl, setPhotoUrl] = useState(
-    "https://www.fiaregion1.com/wp-content/uploads/2018/06/gdpr_profile-picture.jpg"
-  );
+  // const [photoUrl, setPhotoUrl] = useState(
+  //   "https://www.fiaregion1.com/wp-content/uploads/2018/06/gdpr_profile-picture.jpg"
+  // );
   const [type, setType] = useState("users");
   const [service, setService] = useState("");
 
@@ -83,7 +83,8 @@ const SignUp = props => {
               const newUser = {
                 fullName: fullName,
                 password: password,
-                photoUrl: photoUrl,
+                photoUrl:
+                  "https://www.fiaregion1.com/wp-content/uploads/2018/06/gdpr_profile-picture.jpg",
                 username: userName
               };
               if (rtPassword === password) {
@@ -95,7 +96,9 @@ const SignUp = props => {
                   .then(res => {
                     props.history.push("/home/login");
                   })
-                  .catch(err => console.log(err));
+                  .catch(err => {
+                    //console.log(err)
+                  });
               }
             }}
             content="Sign Up"
@@ -174,7 +177,8 @@ const SignUp = props => {
               const newUser = {
                 fullName: fullName,
                 password: password,
-                photoUrl: photoUrl,
+                photoUrl:
+                  "https://www.fiaregion1.com/wp-content/uploads/2018/06/gdpr_profile-picture.jpg",
                 username: userName,
                 serviceType: service
               };
@@ -187,7 +191,9 @@ const SignUp = props => {
                   .then(res => {
                     props.history.push("/home/login");
                   })
-                  .catch(err => console.log(err));
+                  .catch(err => {
+                    //console.log(err)
+                  });
               }
             }}
             content="Sign Up"

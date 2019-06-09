@@ -34,7 +34,11 @@ function SingleWorker(props) {
         alt={props.worker.fullName}
       />
       <CardActionArea>
-        <CardContent>
+        <CardContent
+          onClick={e => {
+            props.history.push(`/worker/account/${props.worker.id}`);
+          }}
+        >
           <Typography gutterBottom variant="h5" component="h2">
             {props.worker.fullName}
           </Typography>

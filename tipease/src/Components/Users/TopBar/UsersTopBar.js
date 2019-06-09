@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
@@ -79,19 +79,27 @@ function UsersTopBar(props) {
             color="inherit"
             aria-label="Open drawer"
             onClick={e => {
-              console.log(props);
+              // console.log(props);
               props.history.push("/users/dashboard/edit");
             }}
           >
             <AccountCircle />
           </IconButton>
-          <Typography variant="h6" color="inherit" noWrap>
+          <Typography
+            style={{ cursor: "pointer" }}
+            onClick={e => {
+              props.history.push("/users/dashboard");
+            }}
+            variant="h6"
+            color="inherit"
+            noWrap
+          >
             {props.fullName}
           </Typography>
           <div className={classes.grow} />
           <Typography
             style={{ cursor: "pointer" }}
-            variant="p"
+            variant="subtitle1"
             color="inherit"
             noWrap
             onClick={e => {

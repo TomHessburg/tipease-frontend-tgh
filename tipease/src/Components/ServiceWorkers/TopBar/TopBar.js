@@ -81,13 +81,21 @@ function SearchAppBar(props) {
           >
             <AccountCircle />
           </IconButton>
-          <Typography variant="h6" color="inherit" noWrap>
+          <Typography
+            style={{ cursor: "pointer" }}
+            onClick={e => {
+              props.history.push("/serviceWorkers/dashboard");
+            }}
+            variant="h6"
+            color="inherit"
+            noWrap
+          >
             {props.fullName}
           </Typography>
           <div className={classes.grow} />
           <Typography
             style={{ cursor: "pointer" }}
-            variant="p"
+            variant="subtitle1"
             color="inherit"
             noWrap
             onClick={e => {

@@ -86,8 +86,8 @@ const Login = props => {
                           props.history.push("/serviceWorkers/dashboard");
                         }
                       }
-                    })
-                    .catch(err => console.log(err));
+                    });
+                  // .catch(err => console.log(err));
                 }}
               />
             </Form>

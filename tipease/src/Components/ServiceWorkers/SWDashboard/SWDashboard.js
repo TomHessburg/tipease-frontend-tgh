@@ -30,7 +30,9 @@ function DashBoard(props) {
     axios
       .get(`https://buildtipease.herokuapp.com/tickets/tipHistory/${props.id}`)
       .then(res => setTips(res.data))
-      .catch(err => console.log(err));
+      .catch(err => {
+        //console.log(err)
+      });
   }, []);
 
   return (
