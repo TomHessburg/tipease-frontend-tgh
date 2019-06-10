@@ -2,6 +2,8 @@
 
 https://tipease.netlify.com/
 
+tipEase is an application that allows users to tip service workers directly, as well as rate them on their services!
+
 ## Frontend Technologies Used:
 
 > 1. React
